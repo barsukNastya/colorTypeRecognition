@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def greating(request):
+  return render(request, 'colortyperecognition/greating.html', {})
