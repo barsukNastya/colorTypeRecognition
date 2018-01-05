@@ -3,7 +3,14 @@
         <title>Hello jopa</title>
     </head>
     <body>
-        <p>Hi there!</p>
-        <p>It works!</p>
+      <p>Hi there!</p>
+      <p>It works!</p>
+        {% for hair_color in hair_colors %}
+          <div>
+              <p>name of color: {{ hair_color.name }}</p>
+              <p>{{ hair_color.rgb_color }}</p>
+              <img>{{ hair_color.img }}</img>
+          </div>
+        {% endfor %}
     </body>
 </html>
