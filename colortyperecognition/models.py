@@ -1,6 +1,9 @@
 from django.db import models
-# from django.utils import timezone
+from django.http import HttpResponseRedirect
 from colorful.fields import RGBColorField
+import cv2, os
+import numpy as np
+from PIL import Image
 
 class HairColor(models.Model):
   name = models.TextField()
@@ -22,22 +25,26 @@ class ColorType(models.Model):
   hairs_colors = models.ManyToManyField(HairColor)
   eyes_colors = models.ManyToManyField(EyesColor)
   skins_colors = models.ManyToManyField(SkinColor)
-  
 
-# class Post(models.Model):
-#   author = models.ForeignKey('auth.User')
-#   title = models.CharField(max_length=200)
-#   text = models.TextField()
-#   created_date = models.DateTimeField(
-#           default=timezone.now)
-#   published_date = models.DateTimeField(
-#           blank=True, null=True)
 
-#   def publish(self):
-#     self.published_date = timezone.now()
-#     self.save()
+class Photo(models.Model):
+  file_field = models.FileField()
+  coords_of_eyes = models.TextField()
+  coords_of_hair =  models.TextField()
+  coords_of_face = models.TextField()
 
-#   def __str__(self):
-#     return self.title
+  def define_eyes_color(self):
+    pass
 
-#       
+  def define_face(self, uploaded_photo):
+    cascadePath = "haarcascade_frontalface_default.xml"
+    faceCascade = cv2.CascadeClassifier(cascadePath)
+
+    recognizer = cv2.createLBPHFaceRecognizer(1,8,8,8,123)
+
+    gray = Image.open(uploaded_photo).convert('L')
+    image = np.array(gray, 'uint8')
+    faces = faceCascade.detectMultiScale(image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+    cv2.imshow("", image[y: y + h, x: x + w])
+    cv2.waitKey(50)

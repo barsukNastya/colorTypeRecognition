@@ -1,0 +1,9 @@
+sudo apt-get install python3.6
+sudo apt-get install python3-venv
+pip install django~=1.11.0
+
+python3 -m venv myvenv
+source myvenv/bin/activate
+pip install --upgrade pip
+pip install django-colorful
+pip install Pillow

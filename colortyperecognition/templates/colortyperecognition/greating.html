@@ -1,16 +1,37 @@
-<html>
-    <head>
-        <title>Hello jopa</title>
-    </head>
-    <body>
-      <p>Hi there!</p>
-      <p>It works!</p>
-        {% for hair_color in hair_colors %}
-          <div>
-              <p>name of color: {{ hair_color.name }}</p>
-              <p>{{ hair_color.rgb_color }}</p>
-              <img>{{ hair_color.img }}</img>
-          </div>
-        {% endfor %}
-    </body>
-</html>
+{% extends 'colortyperecognition/base.html' %}
+{% block content %}
+<h1>Вечер в хату!</h1>
+<p>Всё еще думаете как подобрать робу под стать своему портрету? Мы накатали для вас эту парашу, энжой!
+</p>
+<!-- <form method="post">
+  {% csrf_token %}
+  <input type="text" name="jopa">
+  <input type="file" name="file">
+  <input type="submit" name="send_data" value="Обработать фото">
+</form> -->
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
+
+
+<!--   <p>На фото Ваш натуральный цвет волос?</p>
+    <p><input name="is_natural" type="radio" value="yes" checked>Да</p>
+    <p><input name="is_natural" type="radio" value="no">Нет</p>
+
+  <p>У Вас имеются веснушки?</p>
+    <p><input name="has_freckles" type="radio" value="yes">Да</p>
+    <p><input name="has_freckles" type="radio" value="no" checked>Нет</p> -->
+
+<!--   {% for hair_color in hair_colors %}
+    <div>
+      <h1><a href="{% url 'hair_color_detail' pk=hair_color.pk %}">{{ hair_color.name }}</a></h1>
+      <p>{{ hair_color.rgb_color }}</p>
+      <img class="pics" src="static/img/{{ hair_color.img }}"></img>
+    </div>
+  {% endfor %}
+   -->
