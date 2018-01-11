@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             name='Photo',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file_field', models.FileField(upload_to='media/')),
+                ('file', models.FileField(upload_to='media/')),
                 ('coords_of_eyes', models.TextField()),
                 ('coords_of_hair', models.TextField()),
                 ('coords_of_face', models.TextField()),

@@ -7,3 +7,7 @@ source myvenv/bin/activate
 pip install --upgrade pip
 pip install django-colorful
 pip install Pillow
+pip install opencv-python
+pip install opencv-contrib-python
+
+
